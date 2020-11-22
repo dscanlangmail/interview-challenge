@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../api";
-import { MenuItem } from "../index";
+import { MenuItem, Search } from "../index";
 
 const Menu = () => {
   const [items, setItems] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    async function getItems() {
-      const data = await get(`http://localhost:8080/api/items`);
-      if (items.length === 0) setItems(data?.items || []);
+    async function getItems(search) {
+      const data = await get(
+        `http://localhost:8080/api/items/?search=${search}`
+      );
+      if (data?.items) setItems(data?.items);
     }
-    getItems();
-  }, [items]);
+    getItems(search);
+  }, [search]);
 
   return (
     <div className="col-4">
-      <div className="filters">
-        <input className="form-control" placeholder="Name" />
-      </div>
+      <Search value={search} setSearch={setSearch} />
       <ul className="item-picker">
         {items.map((item) => (
           <MenuItem item={item} key={item.id} removeable={false} />
