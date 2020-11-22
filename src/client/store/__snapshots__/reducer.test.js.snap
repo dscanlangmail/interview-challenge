@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducer should handle removing an item 1`] = `Array []`;
+
+exports[`reducer should handle selecting a new item 1`] = `
+Array [
+  Object {
+    "dietaries": Array [
+      "ve",
+      "df",
+      "gf",
+      "n!",
+    ],
+    "id": 1001,
+    "name": "Kale Caesar Pasta, Turmeric Satay Broccoli & Lemon Cashew Greens",
+  },
+]
+`;
+
+exports[`reducer should return the initial state 1`] = `undefined`;
