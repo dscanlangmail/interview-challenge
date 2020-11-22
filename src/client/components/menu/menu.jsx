@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { get } from "../../api";
+import { MenuItem } from "../index";
 
 const Menu = () => {
   const [items, setItems] = useState([]);
@@ -19,21 +20,7 @@ const Menu = () => {
       </div>
       <ul className="item-picker">
         {items.map((item) => (
-          <li
-            className="item"
-            key={item.id}
-            onClick={() => !removeable && dispatch(selectItem(item))}
-            role="row"
-          >
-            <h2>{item.name}</h2>
-            <p>
-              {item.dietaries.map((dietary) => (
-                <span className="dietary" key={dietary}>
-                  {dietary}
-                </span>
-              ))}
-            </p>
-          </li>
+          <MenuItem item={item} key={item.id} />
         ))}
       </ul>
     </div>

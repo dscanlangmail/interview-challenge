@@ -1,49 +1,37 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getItems } from "../../store/selectors";
+import { removeItem } from "../../store/actions";
 
-const Summary = () => {
+const Preview = () => {
+  const dispatch = useDispatch();
+  const items = useSelector(getItems);
   return (
     <div className="col-8">
       <h2>Menu preview</h2>
       <ul className="menu-preview">
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
-        <li className="item">
-          <h2>Dummy item</h2>
-          <p>
-            <span className="dietary">ve</span>
-            <span className="dietary">v</span>
-            <span className="dietary">n!</span>
-          </p>
-          <button className="remove-item">x</button>
-        </li>
+        {items &&
+          items.map((item) => (
+            <li className="item" key={item.id}>
+              <h2>{item.name}</h2>
+              <p>
+                {item.dietaries.map((dietary) => (
+                  <span className="dietary" key={dietary}>
+                    {dietary}
+                  </span>
+                ))}
+              </p>
+              <button
+                className="remove-item"
+                onClick={() => dispatch(removeItem(item))}
+              >
+                x
+              </button>
+            </li>
+          ))}
       </ul>
     </div>
   );
 };
 
-export default Summary;
+export default Preview;
