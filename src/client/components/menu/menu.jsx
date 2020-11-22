@@ -20,7 +20,7 @@ const Menu = () => {
       </div>
       <ul className="item-picker">
         {items.map((item) => (
-          <MenuItem item={item} key={item.id} />
+          <MenuItem item={item} key={item.id} removeable={false} />
         ))}
       </ul>
     </div>

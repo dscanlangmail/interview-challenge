@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { selectItem, removeItem } from "../../store/actions";
 
-const MenuItem = ({ item }) => {
+const MenuItem = ({ item, removeable }) => {
   const dispatch = useDispatch();
   return (
     <li
       className="item"
       key={item.id}
       role="row"
-      onClick={() => dispatch(selectItem(item))}
+      onClick={() => !removeable && dispatch(selectItem(item))}
     >
       <h2>{item.name}</h2>
       <p>
@@ -20,6 +20,14 @@ const MenuItem = ({ item }) => {
           </span>
         ))}
       </p>
+      {removeable && (
+        <button
+          className="remove-item"
+          onClick={() => dispatch(removeItem(item))}
+        >
+          x
+        </button>
+      )}
     </li>
   );
 };
@@ -30,6 +38,7 @@ MenuItem.propTypes = {
     name: PropTypes.string,
     dietaries: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  removeable: PropTypes.bool.isRequired,
 };
 
 export default MenuItem;
