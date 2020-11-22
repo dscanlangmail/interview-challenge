@@ -24,6 +24,7 @@ const MenuItem = ({ item, removeable }) => {
         <button
           className="remove-item"
           onClick={() => dispatch(removeItem(item))}
+          role="button"
         >
           x
         </button>

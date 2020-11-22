@@ -5,16 +5,11 @@ import userEvent from "@testing-library/user-event";
 import { renderWithRedux } from "../../store/utils";
 import { Menu } from "../index";
 import { get } from "../../api";
+import { mockItem } from "../../mocks/item";
 
 jest.mock("../../api", () => ({
   get: jest.fn(),
 }));
-
-const mockItem = {
-  id: 1001,
-  name: "Kale Caesar Pasta, Turmeric Satay Broccoli & Lemon Cashew Greens",
-  dietaries: ["ve", "df", "gf", "n!"],
-};
 
 describe("components/Menu", () => {
   it("should render the menu component", async () => {
